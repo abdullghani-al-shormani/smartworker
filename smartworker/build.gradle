@@ -1,0 +1,52 @@
+plugins {
+    alias(libs.plugins.android.library)
+    id 'maven-publish'
+}
+
+android {
+    namespace 'com.abdullghani.smartworker'
+    compileSdk {
+        version = release(37)
+    }
+
+    defaultConfig {
+        minSdk 21
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    // إعداد النشر لإنشاء كود المصدر والـ Release AAR تلقائياً
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.abdullghani'
+                artifactId = 'smartworker'
+                version = '1.0.0'
+            }
+        }
+    }
+}
+
+
+
+dependencies {
+    api libs.work.runtime
+    api libs.gson
+    implementation libs.annotation
+    testImplementation libs.junit
+    androidTestImplementation libs.espresso.core
+    androidTestImplementation libs.ext.junit
+}

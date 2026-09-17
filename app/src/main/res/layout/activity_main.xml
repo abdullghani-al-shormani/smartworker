@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Example 1: One-Time Cache Cleanup -->
+        <Button
+            android:id="@+id/btClearCache"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="1. One-Time Work (Clear Cache)" />
+
+        <!-- Example 2: Periodic Work (Database Backup) -->
+        <Button
+            android:id="@+id/btPeriodicBackup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="2. Periodic Work (Database Backup)" />
+
+        <!-- Example 3: Custom Object & Data Passing -->
+        <Button
+            android:id="@+id/btUpdateProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="3. Passing Custom Objects &amp; Data" />
+
+        <!-- Example 4: Parallel & Sequential Task Chaining -->
+        <Button
+            android:id="@+id/btStartChain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="4. Work Chaining (Parallel &amp; Sequential)" />
+
+        <!-- Example 5: Foreground Service (File Download) -->
+        <Button
+            android:id="@+id/btDownloadFile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="5. Long-Running Work (Foreground Service)" />
+
+    </LinearLayout>
+
+</ScrollView>
