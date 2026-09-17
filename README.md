@@ -32,7 +32,7 @@ Add the dependency to your app's build.gradle:
 
 ```Groovy
 dependencies {
-    implementation 'com.github.abdullghani-al-shormani:smartworker:v1.0.0'
+    implementation 'com.github.abdullghani-al-shormani:smartworker:1.0.0'
 }
 ```
 📖 Complete Usage Guide
