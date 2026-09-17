@@ -39,7 +39,7 @@ dependencies {
 1. One-Time Work Execution
 Used for single-run background operations (e.g., file upload, data sync, or quick background processing) with full support for system constraints and initial delays.
 
-```groovy
+```java
 UUID workId = SmartWorker.with(this)
         .oneTime(MySyncWorker.class)
         .requiresInternet()         // Require active internet connection
@@ -51,7 +51,7 @@ UUID workId = SmartWorker.with(this)
 2. Periodic Work Execution
 Used for recurring background operations (e.g., daily database backups). Respects the Android WorkManager minimum interval limit of 15 minutes.
 
-```groovy
+```java
 SmartWorker.with(this)
         .periodic(DatabaseBackupWorker.class, 2, TimeUnit.HOURS)
         .requiresStorageNotLow()    // Require sufficient storage space
@@ -64,7 +64,7 @@ SmartWorker.with(this)
 Overcomes standard WorkManager limitations that only support primitive data types by allowing custom Java/Kotlin objects to be passed and serialized automatically via Gson.
 
 Sending data from an Activity or Fragment:
-```groovy
+```java
 UserProfile user = new UserProfile("Abdullghani", "Admin");
 
 SmartWorker.with(this)
@@ -76,7 +76,7 @@ SmartWorker.with(this)
 ```
 
 Extracting data inside your Worker class:
-```groovy
+```java
 public class UpdateProfileWorker extends Worker {
     public UpdateProfileWorker(@NonNull Context context, @NonNull WorkerParameters params) {
         super(context, params);
@@ -98,7 +98,7 @@ public class UpdateProfileWorker extends Worker {
 
 4. Work Chaining & Parallel Execution
 Build complex task workflows by running multiple tasks in parallel first, followed by sequential steps once completed.
-```groovy
+```java
 SmartWorker.chain(this)
         .beginParallel(DownloadImageWorker.class, DownloadAudioWorker.class) // Execute in parallel
         .then(ProcessDataWorker.class)                                      // Execute after downloads complete
@@ -109,7 +109,7 @@ SmartWorker.chain(this)
 5. Task State & Progress Observation
 Monitor task activity, progress updates, and completion results directly with clean callback interfaces without boilerplate LiveData or WorkInfo management.
 
-```groovy
+```java
 SmartWorker.observe(this, context, "daily_db_backup", new WorkStateListener() {
     @Override
     public void onSuccess(@NonNull Data outputData) {
@@ -133,14 +133,14 @@ SmartWorker.observe(this, context, "daily_db_backup", new WorkStateListener() {
 Designed for critical long-running tasks that must continue running uninterrupted by attaching an ongoing Notification.
 
 Scheduling the worker:
-```groovy
+```java
 SmartWorker.with(context)
         .oneTime(FileDownloadWorker.class)
         .asForeground(NOTIFICATION_ID, notificationObject)
         .enqueue();
 ```
 Inside the Worker during execution:
-```groovy
+```java
 SmartWorkerHelper.promoteToForeground(this, NOTIFICATION_ID, notificationObject);
 ```
 📄 License
